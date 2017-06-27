@@ -1,0 +1,2 @@
+module PrescriptionDetailsHelper
+end

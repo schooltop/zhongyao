@@ -1,0 +1,17 @@
+<%= simple_form_for alias_name, url: work_alias_names_path(alias_name), remote: true, method: :post do |f| %>
+  <% if alias_name.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(alias_name.errors.count, "error") %> prohibited this alias_name from being saved:</h2>
+
+      <ul>
+      <% alias_name.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

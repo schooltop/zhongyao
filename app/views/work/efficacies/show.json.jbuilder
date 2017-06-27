@@ -1,0 +1,1 @@
+json.partial! "efficacies/efficacy", efficacy: @efficacy

@@ -1,0 +1,11 @@
+<li>
+  <% if  current_page.first? %>
+      <a class="btn btn-ban" href="javascript:void(0)" >
+        上一页
+      </a>
+  <% else %>
+      <a class="btn btn-default" href="<%= url %>" >
+        上一页
+      </a>
+  <% end %>
+</li>

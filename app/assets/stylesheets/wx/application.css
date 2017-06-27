@@ -1,0 +1,17 @@
+/*
+*= require wx/weui
+*= require wx/main
+*= require wx/weui_expand
+*= require_self
+*/
+
+.weui-form-preview {
+  margin-bottom: 20px;
+}
+.weui-form-preview__hd {
+  line-height: 1.6;
+}
+
+.weui-form-preview__bd {
+  line-height: 1.6;
+}

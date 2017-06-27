@@ -1,0 +1,16 @@
+<tr id="user_<%= user.id %>">
+  <td class="center aligned">
+    <span><%= alias_name.id%></span>
+  </td>
+  <td class="center aligned">
+    <%= alias_name.diseases.name %>
+  </td>
+  <td class="center aligned">
+    <%= alias_name.name %>
+  </td>
+  <td class="center aligned">
+    <%= link_to edit_work_alias_name_path(alias_name), remote: true, data: {content: '修改', variation: 'inverted'}, class: 'ui blue icon button' do %>
+      <i class="edit icon"></i>
+    <% end %>
+  </td>
+</tr>

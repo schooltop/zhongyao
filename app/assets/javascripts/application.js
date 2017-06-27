@@ -1,0 +1,12 @@
+//= require jquery
+//= require jquery_ujs
+//= require semantic
+//= require about_us
+//= require data-confirm-modal-semantic-ui
+//= require lodash.min
+//= require moment
+//= require my_whmall
+//= require point_market
+//= require province_city_cascade
+//= require wangEditor.min
+//= require zUI

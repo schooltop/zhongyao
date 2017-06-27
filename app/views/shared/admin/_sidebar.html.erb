@@ -1,0 +1,55 @@
+<div class="ui vertical fluid menu" id="verticalMenu">
+  <ul>
+
+    <li>
+    <a class="item">
+      <i class="unordered list icon"></i>
+      <span class="main_menu">系统管理</span>
+      <i class="right dropdown icon"></i>
+    </a>
+    <div class="menu content child active">
+      <%= link_to admin_users_path, class: 'item', active_class: 'actives' do %>
+        <i class="left bullseye icon"></i>
+        <span>用户管理</span>
+      <% end %>
+      <%= link_to work_medicines_path, class: 'item', active_class: 'actives' do %>
+        <i class="left bullseye icon"></i>
+        <span>药物管理</span>
+      <% end %>
+    </div>
+    </li>
+
+    <li>
+    <a class="item">
+      <i class="unordered list icon"></i>
+      <span class="main_menu">药物管理</span>
+      <i class="right dropdown icon"></i>
+    </a>
+    <div class="menu content child active">
+      <%= link_to work_medicines_path, class: 'item', active_class: 'actives' do %>
+        <i class="left bullseye icon"></i>
+        <span>药物管理</span>
+      <% end %>
+    </div>
+    <div class="menu content child active">
+      <%= link_to work_medicines_path, class: 'item', active_class: 'actives' do %>
+        <i class="left bullseye icon"></i>
+        <span>药方管理</span>
+      <% end %>
+    </div>
+    <div class="menu content child active">
+      <%= link_to work_medicines_path, class: 'item', active_class: 'actives' do %>
+        <i class="left bullseye icon"></i>
+        <span>疾病管理</span>
+      <% end %>
+    </div>
+    <div class="menu content child active">
+      <%= link_to work_medicines_path, class: 'item', active_class: 'actives' do %>
+        <i class="left bullseye icon"></i>
+        <span>药效管理</span>
+      <% end %>
+    </div>
+    </li>
+
+  </ul>
+</div>

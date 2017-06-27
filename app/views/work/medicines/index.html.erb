@@ -1,0 +1,34 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2>药物管理</h2>
+  </div>
+</div>
+<%= render 'search_form'  %>
+<div class="ui blue segment">
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to new_work_medicine_path, remote: true, class: 'ui primary button' do %>
+        <i class="plus icon"></i>新增药物
+      <% end %>
+    </div>
+  </div>
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr >
+      <th class="center aligned">ID</th>
+      <th class="center aligned">药名称</th>
+      <th class="center aligned">学名</th>
+      <th class="center aligned">病理</th>
+      <th class="center aligned">药理</th>
+      <th class="center aligned">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render partial: 'list', collection: @medicines, as: :medicine %>
+    </tbody>
+  </table>
+  <span class="blue">
+    <%= page_entries_info(@medicines) %>
+  </span>
+  <%= paginate(@medicines, :theme => 'admin')%>
+</div>

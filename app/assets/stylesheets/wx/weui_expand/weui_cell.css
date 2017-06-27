@@ -1,0 +1,29 @@
+.weui_label {
+  width: 5em;
+}
+
+.weui_cells_title {
+  color: #3ab28c;
+    background: #fbfbfb;
+    margin: 0;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+.weui_cell {
+    font-size: 14px;
+    color: #666666;
+}
+
+.weui_cells_form .weui_cell_ft {
+    font-size: 14px;
+}
+
+.weui_cells {
+    margin-top: 0;
+
+}
+
+.weui_cell.error {
+  border:solid red 1px;
+}

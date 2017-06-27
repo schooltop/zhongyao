@@ -1,0 +1,34 @@
+<h2 class="ui dividing header">新增用户</h2>
+<%= simple_form_for [@user], url: admin_users_path, method: :post, remote: true do |f| %>
+    <div class="two fields">
+      <%= f.input :name, required: false %>
+      <%= f.input :email %>
+    </div>
+    <div class="two fields">
+      <%= f.input :password, as: :password %>
+      <%= f.input :password_confirmation, as: :password %>
+    </div>
+    <div class="two fields">
+      <%= f.input :mobile %>
+      <%= f.input :telephone %>
+    </div>
+    <div class="one field">
+       <div class="time_wraper one field">
+        <%= f.label :role_id %>
+        <div class="two fields">
+          <div class="radio_wraper">
+            <%= f.label :role_id ,'用户'%>
+            <%= f.radio_button :role_id, 1,{checked:true} %>
+          </div>
+          <div class="radio_wraper">
+            <%= f.label :role_id ,'管理员'%>
+            <%= f.radio_button :role_id, 2 %>
+          </div>    
+        </div>
+      </div>
+    </div>
+<% end %>
+<div class="actions">
+  <div class="ui button" onclick="javascript: $('#new_user_modal').modal('hide')">取消</div>
+  <div class="ui blue button" onclick="javascript: $('#new_user').submit();" >确定</div>
+</div>

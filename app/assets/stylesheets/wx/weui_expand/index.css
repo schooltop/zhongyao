@@ -1,0 +1,10 @@
+/*
+*= require_tree .
+*= require_self
+*/
+
+
+.weui_navbar_item.weui_bar_item_on {
+  color: #3ab28c;
+}
+
