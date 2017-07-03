@@ -17,8 +17,8 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string   "current_sign_in_ip"
       t.string   "last_sign_in_ip"
       t.boolean  "is_valid",               default: true
-      t.integer  "status",                                             comment: "用户状态"
-      t.integer  "role_id"
+      t.integer  "status",                                             comment: "用户状态1active"
+      t.integer  "role_id",                                             comment: "1用户，2管理员"
       t.timestamps
       t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
       t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

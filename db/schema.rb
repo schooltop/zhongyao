@@ -132,8 +132,8 @@ ActiveRecord::Schema.define(version: 20170309025622) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "is_valid",               default: true
-    t.integer  "status",                                             comment: "用户状态"
-    t.integer  "role_id"
+    t.integer  "status",                                             comment: "用户状态1active"
+    t.integer  "role_id",                                            comment: "1用户，2管理员"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
