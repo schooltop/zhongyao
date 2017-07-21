@@ -1,4 +1,4 @@
-<%= form_for(efficacy) do |f| %>
+<%= form_for(work_efficacies_path) do |f| %>
   <% if efficacy.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(efficacy.errors.count, "error") %> prohibited this efficacy from being saved:</h2>
