@@ -1,10 +1,8 @@
 <% if @q.present? %>
   <div class="ui blue segment">
-    <%= simple_form_for @q,  url: work_medicines_path, method: :get, wrapper: 'semantic_search_form' do |f| %>
+    <%= simple_form_for @q,  url: work_diseases_path, method: :get, wrapper: 'semantic_search_form' do |f| %>
       <div class="ui five column grid">
-        <%= f.input 'name-like', placeholder: '药名' %>
-        <%= f.input 'diseases_list-like', placeholder: '病理' %>
-        <%= f.input 'efficacie_list-like', placeholder: '药理' %>
+        <%= f.input 'name-like', placeholder: '疾病名' %>
         <div class="column">
           <%= f.submit '搜索', class: 'ui primary button' %>
         </div>

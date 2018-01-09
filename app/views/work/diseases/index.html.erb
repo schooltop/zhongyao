@@ -1,25 +1,33 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Diseases</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2>疾病管理</h2>
+  </div>
+</div>
+<%= render 'search_form'  %>
+<div class="ui blue segment">
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to new_work_disease_path, class: 'ui primary button' do %>
+        <i class="plus icon"></i>新增疾病
+      <% end %>
+    </div>
+  </div>
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr >
+      <th class="center aligned">ID</th>
+      <th class="center aligned">病名称</th>
+      <th class="center aligned">相关描述</th>
+      <th class="center aligned">简介</th>
+      <th class="center aligned">操作</th>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @diseases.each do |disease| %>
-      <tr>
-        <td><%= link_to 'Show', disease %></td>
-        <td><%= link_to 'Edit', edit_disease_path(disease) %></td>
-        <td><%= link_to 'Destroy', disease, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Disease', new_work_disease_path %>
+    </thead>
+    <tbody>
+    <%= render partial: 'list', collection: @diseases, as: :disease %>
+    </tbody>
+  </table>
+  <span class="blue">
+    <%= page_entries_info(@diseases) %>
+  </span>
+  <%= paginate(@diseases, :theme => 'admin')%>
+</div>
