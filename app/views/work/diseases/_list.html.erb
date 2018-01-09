@@ -1,0 +1,19 @@
+<tr id="disease_<%= disease.id %>">
+  <td class="center aligned">
+    <span><%= disease.id%></span>
+  </td>
+  <td class="center aligned">
+    <%=  disease.name%>
+  </td>
+  <td class="center aligned">
+    <%= disease.link %>
+  </td>
+  <td class="center aligned">
+    <%= disease.latin_name %>
+  </td>
+  <td class="center aligned">
+    <%= link_to edit_work_disease_path(disease), remote: true, data: {content: '修改', variation: 'inverted'}, class: 'ui blue icon button' do %>
+      <i class="edit icon"></i>
+    <% end %>
+  </td>
+</tr>
