@@ -1,6 +1,6 @@
 # README
 
-###数据表
+### 数据表
 * rails generate scaffold Medicine  药
 * rails generate scaffold User  用户
 * rails generate scaffold AliasName 药别名
@@ -23,7 +23,7 @@
 
 农村合作医疗，消除赤脚医生！
 
-###乡村系列
+#### 乡村系列
 
 乡村医生
 
