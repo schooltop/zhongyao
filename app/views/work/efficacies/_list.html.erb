@@ -1,0 +1,13 @@
+<tr id="efficacy_<%= efficacy.id %>">
+  <td class="center aligned">
+    <span><%= efficacy.id%></span>
+  </td>
+  <td class="center aligned">
+    <%=  efficacy.name%>
+  </td>
+  <td class="center aligned">
+    <%= link_to edit_work_efficacy_path(efficacy), remote: true, data: {content: '修改', variation: 'inverted'}, class: 'ui blue icon button' do %>
+      <i class="edit icon"></i>
+    <% end %>
+  </td>
+</tr>

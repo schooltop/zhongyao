@@ -1,0 +1,48 @@
+<div class="factory">
+  <div class="container">
+
+    <div class="ovh">
+      <div class="name">
+        <h2>厂家直供</h2><i class="icon_arrow1"></i>
+      </div>
+      <a href="<%= factory_direct_supplies_products_path %>.html" class="more">查看更多</a>
+    </div>
+    <div class="ovh">
+      <div class="supply">
+        <p class="name">最新直供厂家</p>
+        <div class="flexslider"id="supply">
+          <ul class="slides">
+            <li class="ovh ">
+              <% @suppliers_c.each_with_index  do |sp,index|%>
+                  <% if   index < 3 %>
+                      <div class="item">
+                        <%= cached_company(sp[0])&.get_name%>
+                      </div>
+                  <% end %>
+              <% end %>
+            </li>
+            <li class="ovh ">
+              <% @suppliers_c.each_with_index  do |sp,index|%>
+                  <% if index >= 3 &&  index < 6 %>
+                      <div class="item">
+                        <%= cached_company(sp[0])&.get_name%>
+                      </div>
+                  <% end %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <p class="txt">网化商城致力于和直供厂家建立长期稳定的战略合作关系，现已开放申请，我们将为您提供一对一专属服务。</p>
+        <div class="btn_apply" ><a style="color: #ffffff" href="/product_release.html?type=apply#product_release_features">立即申请</div>
+      </div>
+      <div class="list">
+        <% if AgentChemical.get_agent_chemical_list.present? %>
+          <% AgentChemical.get_agent_chemical_list.each do |chemical_id| %>
+            <%= render 'home/agent_chemical', chemical_id: chemical_id %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

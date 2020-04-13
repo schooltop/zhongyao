@@ -1,0 +1,10 @@
+<h2 class="ui dividing header">修改药效</h2>
+<%= simple_form_for [@efficacy], url: work_efficacy_path, method: :put, remote: true do |f| %>
+    <div class="two fields">
+      <%= f.input :name, required: false  %>
+    </div>
+<% end %>
+<div class="actions">
+  <div class="ui button" onclick="javascript: $('#edit_efficacy_modal').modal('hide')">取消</div>
+  <div class="ui blue button" onclick="javascript: $('#edit_efficacy_<%= @efficacy.id %>').submit();" >确定</div>
+</div>

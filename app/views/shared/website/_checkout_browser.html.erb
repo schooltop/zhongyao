@@ -1,0 +1,49 @@
+<script>
+  ;(function( ua ) {
+    if(getCookie('verification_ie') != 'false'){
+      var ie = ua.match( /MSIE\s([\d\.]+)/ ) || ua.match( /(?:trident)(?:.*rv:([\w.]+))?/i );
+      if(ie && parseFloat( ie[ 1 ] ) < 9){
+
+        $('.J_c_ie').on('click', function(event) {
+          $(this).parents('.dimmer').hide();
+          setCookie('verification_ie', 'false', 4320)
+        });
+
+        function setCookie(name, value, Hours) {
+          var d = new Date(),
+              offset = 8,
+              utc = d.getTime() + (d.getTimezoneOffset() * 60000),
+              nd = utc + (3600000 * offset),
+              exp = new Date(nd),
+              Hours = Hours || 1;
+          exp.setTime(exp.getTime() + Hours * 60 * 60 * 1000);
+          document.cookie = name + "=" + escape(value) + ";path=/;expires=" + exp.toGMTString()
+        }
+
+        var  show_ie= "<div class=\"dimmer\" style='display: block;'>"+
+            "        <div class=\"show_ie\">"+
+            "            <div class=\"show_ie_head\">您使用的浏览器版本过低<i class=\"c_show_ie  J_c_ie\">x</i></div>"+
+            "            <div class=\"show_ie_body\">"+
+            "            <p class=\"fs14\">为了让您有更好更安全的体验<br/>建议您选择使用以下浏览器</p>"+
+            "                <ul>"+
+            "                    <li><a href=\"http://www.firefox.com.cn/download/\"><img src=\"/assets/website/ie/firefox.png\" alt=\"\" />火狐浏览器</a></li>"+
+            "                    <li><a href=\"http://se.360.cn/\"><img src=\"/assets/website/ie/360.png\" alt=\"\" />360浏览器</a></li>"+
+            "                    <li class=\"mr0\"><a href=\"http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html\"><img src=\"/assets/website/ie/chrome.jpg\" alt=\"\" />谷歌浏览器</a></li>"+
+            "                </ul>"+
+            "            </div>"+
+            "      </div>"+
+            " </div>";
+        $('body').append(show_ie);
+      }
+    }
+  })( navigator.userAgent );
+
+
+
+  //获取cookie值
+  function getCookie(name) {
+    var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+    if (arr != null) return unescape(arr[2]);
+    return null
+  }
+</script>

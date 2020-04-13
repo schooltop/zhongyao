@@ -1,25 +1,31 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Efficacies</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2>药效管理</h2>
+  </div>
+</div>
+<%= render 'search_form'  %>
+<div class="ui blue segment">
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to new_work_efficacy_path, remote: true, class: 'ui primary button' do %>
+        <i class="plus icon"></i>新增药效
+      <% end %>
+    </div>
+  </div>
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr >
+      <th class="center aligned">ID</th>
+      <th class="center aligned">药效名称</th>
+      <th class="center aligned">操作</th>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @efficacies.each do |efficacy| %>
-      <tr>
-        <td><%= link_to 'Show', efficacy %></td>
-        <td><%= link_to 'Edit', edit_efficacy_path(efficacy) %></td>
-        <td><%= link_to 'Destroy', efficacy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Efficacy', new_work_efficacy_path %>
+    </thead>
+    <tbody>
+    <%= render partial: 'list', collection: @efficacies, as: :efficacy %>
+    </tbody>
+  </table>
+  <span class="blue">
+    <%= page_entries_info(@efficacies) %>
+  </span>
+  <%= paginate(@efficacies, :theme => 'admin')%>
+</div>

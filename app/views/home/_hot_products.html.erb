@@ -1,0 +1,87 @@
+<!-- 热销产品 -->
+<div class="hot_products">
+  <div class="container">
+    <div class="l_hot_products">
+      <div class="ovh">
+        <div class="name">
+          <h2>热销产品</h2><i class="icon_arrow1"></i>
+        </div>
+        <a href="<%= hot_chemicals_products_path %>.html" class="more">查看更多</a>
+      </div>
+      <div class="flexslider rel" id="hot_products" style="height: 566px;">
+        <ul class="slides">
+          <li class="ovh">
+            <div class="list">
+              <% @a_hot_chem_list_ids.each do |id| %>
+                  <%= render 'home/hot_chemical', hot_chemical: HotChemical.find_by(id: id) %>
+              <% end %>
+            </div>
+          </li>
+          <% if @c_hot_chem_list_ids.present? %>
+            <li class="ovh">
+              <div class="list">
+                <% if @c_hot_chem_list_ids.present? %>
+                  <% @c_hot_chem_list_ids.each do |id| %>
+                      <%= render 'home/hot_chemical', hot_chemical: HotChemical.find_by(id: id) %>
+                  <% end %>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="r_hot_products">
+      <div class="link">
+        <a href="<%=my_whmall_buying_cost_accounting_index_path %>"  class="item l">
+          <i class="icon_calc"></i><p>成本核算</p>
+        </a>
+        <a href="/look_raw_material/publish_inquiry.html?siteId=3" class="item r">
+          <i class="icon_shopping_cart"></i><p>发布求购</p>
+        </a>
+      </div>
+      <a href="/about_us/buy_novice_guide.html"  target="_blank"><i class="icon_raiders"></i></a>
+      <div class="prompt">
+        <i class="icon_category"></i>
+        <i class="icon_technical"></i>
+        <i class="icon_service"></i>
+      </div>
+      <div class="post">
+        <div class="name">网站公告</div>
+        <div class="list">
+          <% if @system_notifies.present? %>
+              <% @system_notifies.each do |notifies| %>
+                  <a href="<%= announcement_detail_media_reports_path %>?id=<%= notifies.id %>"  target="_blank" >
+                      <span class="details_post">
+                        <%= notifies.title %>
+                      </span>
+                      <span class="time">
+                        <%= notifies.started_at.blank? ? notifies.created_at.strftime('%m-%d') : notifies.started_at.strftime('%m-%d') %>
+                      </span>
+                  </a>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<% content_for :scripts do %>
+    <%= simple_form_for Inquiry.new, url: '/look_raw_material/publish_inquiry.html?siteId=4'  , method: :post, html: {class: '', target: "_blank", id: 'home_buy_form'} do |f| %>
+        <input type="hidden" name="chemical_id" id="vendor_product_id" >
+    <% end %>
+    <script type="text/javascript">
+      $('.buyer_leading_btn').bind('click', function () {
+        _vendor_product_id = $(this).attr('tabIndex');
+        $("#vendor_product_id").val(_vendor_product_id)
+        $("#home_buy_form").submit()
+      });
+    </script>
+<% end %>
+

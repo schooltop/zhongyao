@@ -4,7 +4,9 @@ class Work::PrescriptionsController < Admin::BaseController
   # GET /prescriptions
   # GET /prescriptions.json
   def index
-    @prescriptions = Prescription.all
+    @q = SearchParams.new(params[:search_params] || {})
+    search_params = @q.attributes(self)
+    @prescriptions = Prescription.default_where(search_params).page(params[:page]).per(10)
   end
 
   # GET /prescriptions/1
@@ -24,30 +26,43 @@ class Work::PrescriptionsController < Admin::BaseController
   # POST /prescriptions
   # POST /prescriptions.json
   def create
-    @prescription = Prescription.new(prescription_params)
-
-    respond_to do |format|
-      if @prescription.save
-        format.html { redirect_to @prescription, notice: 'Prescription was successfully created.' }
-        format.json { render :show, status: :created, location: @prescription }
-      else
-        format.html { render :new }
-        format.json { render json: @prescription.errors, status: :unprocessable_entity }
-      end
+    @prescription = Prescription.create(prescription_params.merge(user_id:current_user.id))
+    
+    diseases_lists = prescription_params[:diseases_list].split(",")
+    diseases_lists.each do |disease_name|
+      disease = Disease.find_or_create_by(name:disease_name)
+      PrescriptionDisease.find_or_create_by(prescription_id: @prescription.id, disease_id: disease.id)
     end
+
+    details = prescription_params[:detail].split(",")
+    details.each do |de|
+      package = de.split(":")
+      medicine = Medicine.find_or_create_by(name:package.first)
+      detail = PrescriptionDetail.find_or_create_by(prescription_id:@prescription.id,medicine_id:medicine.id)
+      detail.package_info = package.last
+      detail.save
+    end
+
   end
 
   # PATCH/PUT /prescriptions/1
   # PATCH/PUT /prescriptions/1.json
   def update
-    respond_to do |format|
-      if @prescription.update(prescription_params)
-        format.html { redirect_to @prescription, notice: 'Prescription was successfully updated.' }
-        format.json { render :show, status: :ok, location: @prescription }
-      else
-        format.html { render :edit }
-        format.json { render json: @prescription.errors, status: :unprocessable_entity }
-      end
+    @prescription.update(prescription_params)
+
+    diseases_lists = prescription_params[:diseases_list].split(",")
+    diseases_lists.each do |disease_name|
+      disease = Disease.find_or_create_by(name:disease_name)
+      PrescriptionDisease.find_or_create_by(prescription_id: @prescription.id, disease_id: disease.id)
+    end
+
+    details = prescription_params[:detail].split(",")
+    details.each do |de|
+      package = de.split(":")
+      medicine = Medicine.find_or_create_by(name:package.first)
+      detail = PrescriptionDetail.find_or_create_by(prescription_id:@prescription.id,medicine_id:medicine.id)
+      detail.package_info = package.last
+      detail.save
     end
   end
 
@@ -69,6 +84,10 @@ class Work::PrescriptionsController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prescription_params
-      params.fetch(:prescription, {})
+      params.require(:prescription).permit(:name,
+                                     :diseases_list,
+                                     :detail,
+                                     :note,
+                                     :user_id)
     end
 end

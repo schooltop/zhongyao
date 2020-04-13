@@ -1,0 +1,8 @@
+<div class="item">
+  <% chemical = cached_chemical_obj(chemical_id)  %>
+  <a href="/products/<%= chemical.get_url_cas %>.html" class="db">
+    <div class="name"><%= chemical.get_name %></div>
+    <img src="" alt="/assets/noPicture.jpg"  data-original="<%= chemical_pic_url chemical_id  %>" class="scrollLoading pic"  onerror="javascript:this.src='/assets/noPicture.jpg'"  draggable="false" />
+    <p class="cas"><%= chemical.get_url_cas %></p>
+  </a>
+</div>

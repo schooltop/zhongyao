@@ -1,0 +1,12 @@
+<% if @efficacy.errors.blank? %>
+  $("tbody").prepend('<%= j render('list', efficacy: @efficacy) %>');
+  $("#new_efficacy_modal").modal('hide');
+<% else %>
+  $(".field .red.pointing").remove();
+  <% @efficacy.errors.messages.each do |key, value| %>
+    $("#efficacy_<%= key %>").parent().addClass('error');
+    $("#efficacy_<%= key %>").parent().append("<div class='ui basic red pointing prompt label transition visible'><%= value[0] %></div>");
+  <% end %>
+<% end %>
+$(".button").popup();
+$(".icon").popup();

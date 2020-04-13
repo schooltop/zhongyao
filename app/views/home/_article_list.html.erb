@@ -1,0 +1,20 @@
+<!-- 媒体报道 -->
+<div class="media_reports">
+  <h2>媒体报道</h2>
+  <a href="<%= media_reports_path %>" class="more">查看更多</a>
+  <ul>
+  <% if @news_list.present? %>
+    <% @news_list.each do |article| %>
+      <li>
+        <a href="<%= media_report_path(article) %>">
+          <div class="img">
+            <img src="" alt="/assets/noPicture.jpg"  data-original="<%= article.cover_img %>" class="scrollLoading"  onerror="javascript:this.src='/assets/noPicture.jpg'"  draggable="false" />
+          </div>
+          <div class="title"><%= article.title  %></div>
+          <div class="description"><%= article.show_body  %></div>
+        </a>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
+</div>

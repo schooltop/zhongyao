@@ -4,7 +4,9 @@ class Work::DiseasesController < Admin::BaseController
   # GET /diseases
   # GET /diseases.json
   def index
-    @diseases = Disease.all
+    @q = SearchParams.new(params[:search_params] || {})
+    search_params = @q.attributes(self)
+    @diseases = Disease.default_where(search_params).page(params[:page]).per(10)
   end
 
   # GET /diseases/1
@@ -24,31 +26,13 @@ class Work::DiseasesController < Admin::BaseController
   # POST /diseases
   # POST /diseases.json
   def create
-    @disease = Disease.new(disease_params)
-
-    respond_to do |format|
-      if @disease.save
-        format.html { redirect_to @disease, notice: 'Disease was successfully created.' }
-        format.json { render :show, status: :created, location: @disease }
-      else
-        format.html { render :new }
-        format.json { render json: @disease.errors, status: :unprocessable_entity }
-      end
-    end
+    @disease = Disease.create(disease_params)
   end
 
   # PATCH/PUT /diseases/1
   # PATCH/PUT /diseases/1.json
   def update
-    respond_to do |format|
-      if @disease.update(disease_params)
-        format.html { redirect_to @disease, notice: 'Disease was successfully updated.' }
-        format.json { render :show, status: :ok, location: @disease }
-      else
-        format.html { render :edit }
-        format.json { render json: @disease.errors, status: :unprocessable_entity }
-      end
-    end
+    @disease.update(disease_params)
   end
 
   # DELETE /diseases/1
@@ -69,6 +53,8 @@ class Work::DiseasesController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disease_params
-      params.fetch(:disease, {})
+      params.require(:disease).permit(:name,
+                                     :link,
+                                     :latin_name)
     end
 end

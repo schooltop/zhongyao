@@ -1,0 +1,37 @@
+
+<!-- 底部 -->
+<div class="clearfix" id="footValues">
+  <ul>
+    <li><i class="a1"></i>解放采购
+    </li>
+    <li><i class="a2"></i>保证品质
+    </li>
+    <li><i class="a3"></i>直击底价
+    </li>
+    <li><i class="a4"></i>及时交付
+    </li>
+    <li><i class="a5"></i>全程担保
+    </li>
+    <li><i class="a6"></i>精准匹配
+    </li>
+  </ul>
+</div>
+<footer>
+  <%= render '/shared/website/footer_link' %>
+</footer>
+<span style="display:none;">
+  <script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?5d3900485951e0017e83d613935bf20e";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm, s);})();</script>
+</span>
+<% content_for :scripts do %>
+    <%= javascript_include_tag 'website/js/page/common.js' %>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?43da7dbe454c44a2bfb335f61cc06c6f";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
+<% end %>

@@ -1,0 +1,12 @@
+<% if @prescription.errors.blank? %>
+  $("#prescription_<%= @prescription.id %>").replaceWith('<%= j render('list', prescription: @prescription) %>');
+  $("#edit_prescription_modal").modal('hide');
+<% else %>
+  $(".field .red.pointing").remove();
+  <% @prescription.errors.messages.each do |key, value| %>
+  $("#prescription_<%= key %>").parent().addClass('error');
+  $("#prescription_<%= key %>").parent().append("<div class='ui basic red pointing prompt label transition visible'><%= value[0] %></div>");
+<% end %>
+<% end %>
+$(".button").popup();
+$(".icon").popup();

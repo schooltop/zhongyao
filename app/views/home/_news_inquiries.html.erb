@@ -1,0 +1,43 @@
+<ul class="list_info">
+  <li>
+    <ul class="list-tab-head">
+      <li class="cas">CAS号</li>
+      <li class="name">产品名称</li>
+      <li class="num">采购数量</li>
+      <li class="add">收货区域</li>
+      <li class="time">求购时间</li>
+      <li></li>
+    </ul>
+  </li>
+
+  <% if @news_inquiries.present? %>
+    <li>
+      <% @news_inquiries.each do |inq| %>
+          <ul class="list">
+            <li class="cas">&nbsp;<a href="/products/<%= inq.chemical&.get_url_cas %>.html" target="_blank"><%= inq.chemical&.cas %></a></li>
+            <li class="name">&nbsp;<a href="/products/<%= inq.chemical&.get_url_cas %>.html" target="_blank"><%= inq.chemical&.get_name %></a></li>
+            <li class="num">&nbsp;<%= show_inquiry_packages inq %></li>
+            <li class="add">&nbsp;<%= inq.province %> <%= inq.city %></li>
+            <li class="time">&nbsp;<%= show_db_time inq.created_at %></li>
+            <li>
+              <button class="my_quotation_btn" tabIndex="<%= inq.id %>" >我要报价</button>
+            </li>
+          </ul>
+      <% end %>
+    </li>
+  <% end %>
+
+</ul>
+
+<% content_for :scripts do %>
+    <%= simple_form_for InquiryQuotation.new, url: inquiry_quotation_quotation_index_path  , method: :post, html: {class: '', id: 'inquiry_quotation_alert_form'} do |f| %>
+        <input type="hidden" name="id" id="inquiry_quotation_inquiry_id" >
+    <% end %>
+    <script type="text/javascript">
+      $('.my_quotation_btn').bind('click', function () {
+        _inquiry_id = $(this).attr('tabIndex');
+        $("#inquiry_quotation_inquiry_id").val(_inquiry_id)
+        $("#inquiry_quotation_alert_form").submit();
+      });
+    </script>
+<% end %>

@@ -1,0 +1,14 @@
+<h2 class="ui dividing header">修改病例</h2>
+<%= simple_form_for [@disease], url: work_disease_path, method: :put, remote: true do |f| %>
+   <div class="two fields">
+      <%= f.input :name, required: false  %>
+      <%= f.input :link %>
+    </div>
+    <div class="two fields">
+      <%= f.input :latin_name %>
+    </div>
+<% end %>
+<div class="actions">
+  <div class="ui button" onclick="javascript: $('#edit_disease_modal').modal('hide')">取消</div>
+  <div class="ui blue button" onclick="javascript: $('#edit_disease_<%= @disease.id %>').submit();" >确定</div>
+</div>

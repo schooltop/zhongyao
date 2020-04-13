@@ -12,7 +12,11 @@ module Web
       sign_in(resource_name, resource) if resource.is_active?
       respond_to do |format|
         session[:user_id] = current_user.id
-        format.html { redirect_to "/" }
+        if current_user.is_worker?
+          format.html { redirect_to "/" }
+        else
+          format.html { redirect_to "/home" }
+        end  
         format.json { render status: '201', json: resource.as_json(only: [:login, :email, :private_token]) }
       end
     end

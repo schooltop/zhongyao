@@ -4,7 +4,9 @@ class Work::MedicinesController < Admin::BaseController
   # GET /medicines
   # GET /medicines.json
   def index
-    @medicines = Medicine.all.page(params[:page]).per(10)
+    @q = SearchParams.new(params[:search_params] || {})
+    search_params = @q.attributes(self)
+    @medicines = Medicine.default_where(search_params).page(params[:page]).per(10)
   end
 
   # GET /medicines/1
@@ -24,31 +26,39 @@ class Work::MedicinesController < Admin::BaseController
   # POST /medicines
   # POST /medicines.json
   def create
-    @medicine = Medicine.new(medicine_params)
+    @medicine = Medicine.create(medicine_params)
 
-    respond_to do |format|
-      if @medicine.save
-        format.html { redirect_to @medicine, notice: 'Medicine was successfully created.' }
-        format.json { render :show, status: :created, location: @medicine }
-      else
-        format.html { render :new }
-        format.json { render json: @medicine.errors, status: :unprocessable_entity }
-      end
+    diseases_lists = medicine_params[:diseases_list].split(",")
+    diseases_lists.each do |disease_name|
+      disease = Disease.find_or_create_by(name:disease_name)
+      MedicineDisease.find_or_create_by(medicine_id: @medicine.id, disease_id: disease.id)
     end
+
+    efficacie_lists = medicine_params[:efficacie_list].split(",")
+    efficacie_lists.each do |efficacy_name|
+      efficacy = Efficacy.find_or_create_by(name:efficacy_name)
+      MedicineEfficacy.find_or_create_by(medicine_id: @medicine.id, efficacy_id: efficacy.id)
+    end
+
   end
 
   # PATCH/PUT /medicines/1
   # PATCH/PUT /medicines/1.json
   def update
-    respond_to do |format|
-      if @medicine.update(medicine_params)
-        format.html { redirect_to @medicine, notice: 'Medicine was successfully updated.' }
-        format.json { render :show, status: :ok, location: @medicine }
-      else
-        format.html { render :edit }
-        format.json { render json: @medicine.errors, status: :unprocessable_entity }
-      end
+    @medicine.update(medicine_params)
+
+    diseases_lists = medicine_params[:diseases_list].split(",")
+    diseases_lists.each do |disease_name|
+      disease = Disease.find_or_create_by(name:disease_name)
+      MedicineDisease.find_or_create_by(medicine_id: @medicine.id, disease_id: disease.id)
     end
+
+    efficacie_lists = medicine_params[:efficacie_list].split(",")
+    efficacie_lists.each do |efficacy_name|
+      efficacy = Efficacy.find_or_create_by(name:efficacy_name)
+      MedicineEfficacy.find_or_create_by(medicine_id: @medicine.id, efficacy_id: efficacy.id)
+    end
+
   end
 
   # DELETE /medicines/1
@@ -69,6 +79,13 @@ class Work::MedicinesController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medicine_params
-      params.fetch(:medicine, {})
+      params.require(:medicine).permit(:name,
+                                     :other_name,
+                                     :diseases_list,
+                                     :efficacie_list,
+                                     :source,
+                                     :resistance,
+                                     :indications,
+                                     :note)
     end
 end

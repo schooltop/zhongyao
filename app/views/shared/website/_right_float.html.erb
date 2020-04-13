@@ -1,0 +1,168 @@
+<div class="dimmer" id="J_advance_dialog">
+  <div class="ks-dialog ks-dialog3" aria-hidden="false"  <% if current_user.present? %> style="width: 475px;height:305px;left: 50%;top: 50%;margin-left: -225px;margin-top: -175px;" <% else %> style="width: 475px;height:390px;left: 50%;top: 50%;margin-left: -225px;margin-top: -175px;" <% end %>>
+    <a href="javascript:;" class="ks-dialog-close ks-overlay-close" role="button">
+      <span class="ks-overlay-close-x">x</span>
+    </a>
+    <div class="ks-dialog-header">
+      <h4 class="tsl">提交反馈</h4>
+    </div>
+    <%#= simple_form_for CustomerBug.new, url: add_customer_bug_home_index_path , method: :post, html: {class: '',id: 'add_customer_bug_form'} do |f| %>
+        <!-- <div class="feedback_form">
+          <p class='title'>您好，期待您的意见和建议！</p>
+          <textarea  placeholder='如果您在使用过程中有什么不好用的，或者对我们的服务有什么不满意的地方，请大声说出来！ 我们会每天关注您的反馈，不断地优化产品和服务，努力做到最好！' maxlength="500" id="customer_bug_content" name="customer_bug[content]" style="margin: 9px 5px 6px 20px" maxlength="200"></textarea>
+
+          <p <% if current_user.present? %> style="display: none " <% end %>>联系方式：</p>
+          <input type='text' id='customer_bug_contact_style' name='customer_bug[contact_style]' placeholder='请输入您的常用邮箱或者联系电话' class='input' value="<%#= current_user&.email %>" <% if current_user.present? %> style="display: none " <% end %>>
+        </div> -->
+    <%# end %>
+    <div class=" ks-footer mr5">
+      <a href="javascript:void(0);" class="btn_submit_min" id="add_customer_bug_form_btn">确认</a>
+    </div>
+  </div>
+</div>
+
+<div class="right-menu J_right_menu" <% if session[:show_right_menu]  %> style="display:none" <% end %> >
+  <% if @float_banner.blank? %>
+      <!-- <a href="/whyx.html" class="green_hands" target="_blank">
+        <div class="bar_bg" style="background-image: url('/assets/website/bar_bg.png?r=<%#= Time.now.strftime("%Y%m%d%H%M%s") %>')">
+        </div>
+      </a> -->
+  <% else %>
+      <% if @float_banner&.href.present? %>
+          <a href="<%#= @float_banner&.href  %>" class="green_hands" target="_blank">
+            <div class="bar_bg" style="background-image: url(<%#= @float_banner&.image %>)">
+            </div>
+          </a>
+      <% else %>
+          <a href="javascript:void(0)" class="green_hands" >
+            <div class="bar_bg" style="background-image: url(<%#= @float_banner&.image %>)">
+            </div>
+          </a>
+      <% end %>
+  <% end %>
+  <ul>
+    <li class="head_portrait">
+      <a href="<%#= my_whmall_home_index_path %>">    <img src="/assets/website/icons/man.png" alt="" /></a>
+    </li>
+    <li>
+      <a href="/about_us/buy_novice_guide" class="guide">
+        <div class="guide_img"></div>
+        <div class="guide_text">
+          新手指引
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="<%#= publish_inquiry_look_raw_material_index_path %>" class="free">免费找货</a>
+    </li>
+    <li class="phone">
+      <div class="phone_img"></div>
+      <div class="phone_text">
+        服务热线
+        <div class="service_phone"><i></i>4008-200-497</div>
+      </div>
+    </li>
+    <li class="qq_onLine">
+      <!--<a href="tencent://message/?Menu=yes&amp;amp;uin=800030582&amp;amp;Service=58&amp;amp;SigT=A7F6FEA02730C98888F9F2B39FF3CBF4B4B654F197AA130A35A8EB1381E0C8A5D550E04A27B1B6678930C5B63E851F8406B47F4AA7FA6D18CB2FB0DE61E37117B89E291EE68D1021C2EF8CB14FFB9ABE3C8A96F2F1C9232C9691ECCCF9250BA053C62891BD08ED5ABEF3C5C7FE168E1668BB3A8F19F0EF63&amp;amp;SigU=30E5D5233A443AB206D05D79F227A6BAAC82DA3689ADB02D6404C504D00466E6D70FA14DCD9F951570F6760A73CDC6C9512B88F71A81DF0E634061E60DC81E375E4BAD6BA4EF0AD4" target="_blank">-->
+      <div class="qq_onLine_img"></div>
+      <!--<div class="qq_onLine_text">-->
+      <!--客服 QQ-->
+      <!--<div class="qq_onLine_icon"><i></i>800-030-582</div>-->
+      <!--</div>-->
+      <div class="qq_onLine_text">客服 QQ
+        <!--<a href="http://b.qq.com/webc.htm?new=0&amp;sid=800030582&amp;o=网化商城&amp;q=7" target="_blank">-->
+        <div class="qq_onLine_icon">
+          <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzgwMDAzMDU4Ml80ODE2MzhfODAwMDMwNTgyXw"></script>
+          <!--<i class="qq_onLine_icon2"></i>800-030-582-->
+        </div>
+        <!--</a>-->
+      </div>
+      <!--</a>-->
+    </li>
+    <li>
+      <a href="javascript:void(0)" class="feedback" id="advance_feedback">
+        <div class="feedback_img"></div>
+        <div class="feedback_text">
+          意见反馈
+        </div>
+      </a>
+    </li>
+    <li class="gotop J_gotop">
+      <a href="javascript:void(0)"></a>
+    </li>
+    <li class="big_menu J_big_menu">
+      <a href="javascript:void(0)">><p>收起</p></a>
+    </li>
+    <li class="gotop J_gotop">
+      <a href="javascript:void(0)"></a>
+    </li>
+  </ul>
+</div>
+<div class="right_min_menu" <% if session[:show_right_menu]  %> style="display:block" <% end %>>
+  <ul>
+    <li class="change_menu J_small_menu">
+      <a href="javascript:void(0)" >+</a>
+    </li>
+    <li class="qq_onLine">
+      <!--<a href="tencent://message/?Menu=yes&amp;amp;uin=800030582&amp;amp;Service=58&amp;amp;SigT=A7F6FEA02730C98888F9F2B39FF3CBF4B4B654F197AA130A35A8EB1381E0C8A5D550E04A27B1B6678930C5B63E851F8406B47F4AA7FA6D18CB2FB0DE61E37117B89E291EE68D1021C2EF8CB14FFB9ABE3C8A96F2F1C9232C9691ECCCF9250BA053C62891BD08ED5ABEF3C5C7FE168E1668BB3A8F19F0EF63&amp;amp;SigU=30E5D5233A443AB206D05D79F227A6BAAC82DA3689ADB02D6404C504D00466E6D70FA14DCD9F951570F6760A73CDC6C9512B88F71A81DF0E634061E60DC81E375E4BAD6BA4EF0AD4" target="_blank">-->
+      <div class="qq_onLine_img"></div>
+      <!--<div class="qq_onLine_text">-->
+      <!--客服 QQ-->
+      <!--<div class="qq_onLine_icon"><i></i>800-030-582</div>-->
+      <!--</div>-->
+      <div class="qq_onLine_text">  客服 QQ
+        <!--<a href="http://b.qq.com/webc.htm?new=0&amp;sid=800030582&amp;o=网化商城&amp;q=7" target="_blank">-->
+        <div class="qq_onLine_icon">
+          <!--<i class="qq_onLine_icon2"></i>800-030-582-->
+          <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzgwMDAzMDU4Ml80ODE2MzhfODAwMDMwNTgyXw"></script>
+        </div>
+        <!--</a>-->
+      </div>
+      <!--</a>-->
+    </li>
+    <li class="gotop J_gotop">
+      <a href="javascript:void(0)"></a>
+    </li>
+  </ul>
+</div>
+
+
+<% content_for :scripts do %>
+    <script type="text/javascript">
+      //显示小菜单
+      $('.J_big_menu').on('click', function () {
+
+        $.ajax({
+          url:'/home/set_right_menu',
+          type:'get',
+          cache:false,
+          data:'show_right_menu=false&nocache='+Math.random(),
+          dataType:"json",
+          success:function(msg1){
+            $('.J_right_menu').hide();
+            $('.right_min_menu').show();
+          }
+        })
+
+
+      });
+      //显示大菜单
+      $('.J_small_menu').on('click', function () {
+
+        $.ajax({
+          url:'/home/set_right_menu',
+          type:'get',
+          cache:false,
+          data:'nocache='+Math.random(),
+          dataType:"json",
+          success:function(msg1){
+            $('.J_right_menu').show();
+            $('.right_min_menu').hide();
+          }
+        })
+      });
+
+
+
+    </script>
+<% end %>

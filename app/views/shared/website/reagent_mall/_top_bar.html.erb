@@ -1,0 +1,55 @@
+
+<% if params[:controller] == 'reagent_mall/mall'  && params[:action] != 'index' %>
+    <div class="headWrapper2">
+      <div class="container">
+        <div class="l">
+          <a href="/" class="logo2">
+            <img src="/assets/website/logo.png" class="reagentMall_logo">
+          </a>
+          <a href="<%= reagent_mall_mall_index_path%>.html" class="logo2">
+            <p class="logo_name"><%= @banner_title %></p>
+          </a>
+        </div>
+        <div class="topSearch r">
+
+          <form action="<%= list_reagent_mall_mall_index_path %>" id="frm_quick_search_mall" method="get" style="border:none;" >
+            <%=  hidden_field_tag :search_chemical_id %>
+            <div class="ui search focus" style="height:40px; padding-top: 0">
+              <input class="searchTxt prompt" id="quick_search_param" name="search_params[name]" placeholder="请输入化学品的中文名，英文名或CAS号" type="text" autocomplete="off" style="border: #00ad69 solid 2px !important;line-height: 34px !important;padding: 1px !important; border-radius: 0 !important;">
+                <i class="icon search"></i>
+              <div class="results" style="width: 376px;text-align: left;"></div>
+            </div>
+              <input  class="dn" id="a" name="b" placeholder="" type="text"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+<% elsif params[:controller] != 'reagent_mall/orders'  ||   params[:action] != 'payment' %>
+  <div class="headWrapper2">
+    <div class="container">
+      <div class="l">
+        <a href="/" class="logo2">
+          <img src="/assets/website/logo.png" class="reagentMall_logo">
+          <p class="logo_name"><%= @banner_title %></p>
+        </a>
+        <!--<a href="<%= reagent_mall_mall_index_path%>.html" class="logo2">-->
+          <!--<p class="logo_name"><%= @banner_title %></p>-->
+        <!--</a>-->
+      </div>
+      <div class="nav">
+        <div  <% if params[:controller] == 'reagent_mall/shop_carts' && params[:action] == 'index'%> class="item1 active"  <% else %>class="item1 "<% end %>>
+          <i></i>
+          <p>选择商品</p>
+        </div>
+        <div  <% if params[:controller] == 'reagent_mall/orders' && params[:action] == 'create_order'%> class="item2 active"  <% else %>class="item2 "<% end %>>
+          <i></i>
+          <p>填写核对订单信息</p>
+        </div>
+        <div class="item3">
+          <i></i>
+          <p>成功提交订单</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

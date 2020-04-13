@@ -1,0 +1,12 @@
+<!-- 化学前沿 -->
+<div class="chemical_frontier">
+  <h2>化学前沿</h2>
+  <a href="<%= chemical_frontier_media_reports_path %>" class="more">查看更多</a>
+  <ul>
+    <% if @chemical_frontiers.present? %>
+        <% @chemical_frontiers.each do |article| %>
+            <li><a href="<%= chemical_frontier_detail_media_reports_path(id: article) %>" class="description"><%= article.title  %></a></li>
+        <% end %>
+    <% end %>
+  </ul>
+</div>

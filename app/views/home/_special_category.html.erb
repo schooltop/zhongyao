@@ -1,0 +1,73 @@
+<!-- 特殊品类 -->
+<div class="special_category" id="yzd_anchor">
+  <div class="container">
+    <!-- <a href="/popular_science.html" target="_blank" class="db pt30"><img src="/assets/index_gg.jpg" alt=""></a> -->
+    <div class="ovh">
+      <div class="name">
+        <h2>管制品类</h2><i class="icon_arrow1"></i>
+      </div>
+      <a href="<%= special_categories_products_path %>.html" class="more">查看更多</a>
+    </div>
+    <div class="l_special_category">
+      <div class="certificate">
+        <%= link_to guide_purchase_license_index_path do %>
+        <img src="/assets/certificate.jpg" alt="">
+        <% end %>
+      </div>
+      <div class="supply" >
+        <p class="name">最新供应厂家</p>
+        <div class="flexslider"id="special_category">
+          <ul class="slides">
+            <% if @special_vendor_one.present? %>
+              <li class="ovh ">
+                <% @special_vendor_one.each do |sv|%>
+                  <div class="item">
+                    <%= cached_company(sv.id)&.get_name%>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+
+            <% if @special_vendor_two.present? %>
+                <li class="ovh ">
+                  <% @special_vendor_two.each do |sv|%>
+                      <div class="item">
+                        <%= cached_company(sv.id)&.get_name%>
+                      </div>
+                  <% end %>
+                </li>
+            <% end %>
+            <% if @special_vendor_three.present? %>
+                <li class="ovh ">
+                  <% @special_vendor_three.each do |sv|%>
+                      <div class="item">
+                        <%= cached_company(sv.id)&.get_name%>
+                      </div>
+                  <% end %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+        <p class="txt">网化商城受权开通二三类易制毒化学品备案和交易一体化通道，免费撮合服务已经上线。诚邀相关品类合规供应商入驻。</p>
+        <div class="btn_apply"><a style="color: #ffffff" href="/product_release.html?type=clue#product_release_features">立即入驻</a></div>
+      </div>
+
+    </div>
+
+    <div class="list">
+
+      <% @special_chemical_list.each  do |chemical| %>
+        <% pro = cached_chemical_obj(chemical.id)  %>
+        <div class="item">
+          <p class="name"> <a href="/products/<%= pro.get_url_cas %>.html"><%= pro.get_name %></a></p>
+          <p class="name2"><a href="/products/<%= pro.get_url_cas %>.html"><%= pro.name %></a></p>
+          <a href="/products/<%= pro.get_url_cas %>.html">
+            <img src="" alt="/assets/noPicture.jpg"  data-original="<%= chemical_pic_url pro.id %>" class="scrollLoading pic"  onerror="javascript:this.src='/assets/noPicture.jpg'" />
+          </a>
+          <a href="/products/<%= pro.get_url_cas %>.html" class="buy_now" >立即购买</a>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

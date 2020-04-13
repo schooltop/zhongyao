@@ -8,4 +8,15 @@ Rails.application.routes.draw do
 
   root :to => 'dashboard#index'
   # match '/admin/ajax_bar' => 'website/ajax_bar/ajax_bar#ajax', :as => :ajax_bar, :via => [:post, :get]
+
+  resources :home do
+    collection do
+      post :add_customer_bug
+      get :set_right_menu
+      get :refresh_head
+      get :attention_chemical
+      get :validate_certificate_no
+    end
+  end
+
 end

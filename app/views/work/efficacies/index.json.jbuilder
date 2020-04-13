@@ -1,1 +1,0 @@
-json.array! @efficacies, partial: 'efficacies/efficacy', as: :efficacy

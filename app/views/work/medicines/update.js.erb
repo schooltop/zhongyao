@@ -1,0 +1,12 @@
+<% if @medicine.errors.blank? %>
+  $("#medicine_<%= @medicine.id %>").replaceWith('<%= j render('list', medicine: @medicine) %>');
+  $("#edit_medicine_modal").modal('hide');
+<% else %>
+  $(".field .red.pointing").remove();
+  <% @medicine.errors.messages.each do |key, value| %>
+  $("#medicine_<%= key %>").parent().addClass('error');
+  $("#medicine_<%= key %>").parent().append("<div class='ui basic red pointing prompt label transition visible'><%= value[0] %></div>");
+<% end %>
+<% end %>
+$(".button").popup();
+$(".icon").popup();

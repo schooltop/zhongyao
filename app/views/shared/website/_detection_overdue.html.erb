@@ -1,0 +1,60 @@
+<!-- 证照过期提醒 -->
+<% if cookies[:last_expired_at].nil? && @current_user.present? %>
+  <% certificate_ids = @current_user.check_certificate_validity %>
+  <% business = @current_user.check_business_licenses_validity %>
+  <% legal_person_idcart = @current_user.check_idcart_validity("legal_person") %>
+  <% transactor_idcart = @current_user.check_idcart_validity("transactor") %>
+  <% if certificate_ids.present? || business.present? || legal_person_idcart.present? || transactor_idcart.present? %>
+      <% cookies[:last_expired_at]={value: Time.new,expires: 1.day.from_now}%>
+      <div class="dimmer" style="display: block">
+        <div class="license_expired">
+          <p class="title">证照过期提醒</p>
+          <% certificate_ids.each do |id|%>
+              <% cf = Certificate.find_by(id: id)%>
+              <p class="txt">您的《<%= Certificate::CATEGORY[cf.category] %>》<span class="red"><%= cf.show_overdue %></span>。</p>
+          <% end  if certificate_ids.present? %>
+          <% if business.present? %>
+              <p class="txt">您的《企业营业执照》<span class="red"><%= business.show_overdue %></span>。</p>
+          <% end %>
+          <% if legal_person_idcart.present? %>
+              <p class="txt">您的《企业法人身份证》<span class="red"><%= legal_person_idcart.show_overdue %></span>。</p>
+          <% end %>
+          <% if transactor_idcart.present? %>
+              <p class="txt">您的《管制品经办人身份证》<span class="red"><%= transactor_idcart.show_overdue %></span>。</p>
+          <% end %>
+          <p class="txt">请及时更新您的证照，以免影响相关商品的正常交易。</p>
+          <label for="" class="dib ml35 mt5"><input type="checkbox" id="J_no_longer_remind">不再提醒</label>
+          <div class="btns">
+            <a href="JavaScript:void(0)" class="btn1 J_go_update">去更新</a>
+            <a href="JavaScript:void(0)" class="btn2 J_C_license_expired">知道了，稍后再说</a>
+          </div>
+        </div>
+      </div>
+      <script>
+        $('.J_C_license_expired').on('click',function(event) {
+          event.preventDefault();
+          $(this).parents('.dimmer').hide();
+
+          var all_choose_ok = $("#J_no_longer_remind").is(':checked');
+          if(all_choose_ok){
+            $.ajax({
+              url: "<%= remember_choose_my_whmall_account_transaction_datas_path %>",
+              type: 'get',
+              dataType: 'script'
+            });
+          }
+
+        });
+
+        $(".J_go_update").on('click',function(){
+          var all_choose_ok = $("#J_no_longer_remind").is(':checked');
+          if(all_choose_ok){
+            location.href = "<%= business_qualification_management_my_whmall_account_transaction_datas_path(type: "jump") %>"
+          }else{
+            location.href = "<%= business_qualification_management_my_whmall_account_transaction_datas_path %>"
+          }
+        })
+
+      </script>
+  <% end %>
+<% end %>

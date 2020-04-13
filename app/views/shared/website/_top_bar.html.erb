@@ -1,0 +1,53 @@
+<% if params[:controller] == 'look_raw_material' || params[:controller] == 'selling_product' || params[:controller] == 'firm_orders' %>
+    <div class="headWrapper headWrapper5">
+        <div>
+          <div class="topLogo">
+            <a href="/">
+              <img src="/assets/website/logo4.jpg">
+            </a>
+          </div>
+          <%= render '/shared/website/quick_search' %>
+        </div>
+    </div>
+<% else %>
+    <div class="headWrapper">
+      <div class="topLogo">
+        <a href="/">
+          <img src="/assets/website/home_logo.png">
+        </a>
+      </div>
+      <%= render '/shared/website/quick_search' %>
+    </div>
+<% end  %>
+
+<div class="navWrapper">
+  <div class="navbar">
+    <ul>
+      <li class="nav1">
+        <a  <% if params[:controller] == 'home' %> class="active" <% end %>  href="/">首页</a>
+      </li>
+      <li>
+        <a  <% if params[:controller] == 'look_raw_material' %> class="active" <% end %> href="/look_raw_material/index.html">找原料</a>
+      </li>
+      <li>
+        <a href="/firm_orders/index.html" class="hot <%= params[:controller] == 'firm_orders' ? 'active' : '' %>">实单竞标
+          <img src="/assets/website/icons/hot.png" />
+        </a>
+      </li>
+      <li>
+        <a  <% if params[:controller] == 'selling_product' %> class="active" <% end %> href="/selling_product/index.html" >卖产品</a>
+      </li>
+      <li>
+        <a href="/chemical_ai" <% if params[:controller] == 'syntheticnew' %> class="active" <% end %>  >AI路线设计</a>
+      </li>
+      <li>
+        <a href="/iou.html" <% if params[:controller] == 'iou' %> class="active" <% end %>  >网化白条</a>
+      </li>
+      <% if Time.now < '2018-01-01' %>
+        <li>
+          <a href="<%= point_market_index_path %>" target="_blank">积分兑换</a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

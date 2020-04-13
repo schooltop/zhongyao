@@ -1,0 +1,39 @@
+<% if current_user.blank? %>
+    <!-- 未登录 -->
+    <div class="homeUser">
+      <img src="/assets/website/userPic.png" alt=""  class="user_img" />
+      <p class="wecome">Hi,<%= @show_time %>好 </p>
+      <p class="wecome">欢迎来到网化商城</p>
+      <a href='<%= new_user_registration_path %>' class="register">立即注册</a>
+      <div class="login">
+        <p>已有账号？<a href="<%= user_session_path %>">立即登录</a></p>
+      </div>
+      <div class="phone">
+        <i></i>
+        <p>服务热线</p>
+        <p class="num">4008-200-497</p>
+      </div>
+    </div>
+<% else %>
+    <!-- 已登录 -->
+    <div class="homeUser2">
+      <img src="/assets/website/icons/clause1.png" alt="" class="user_img" />
+      <p class="wecome"><%= current_user.name %>,<%= @show_time %>好 </p>
+      <a href="<%= my_whmall_home_index_path %>" class="mall">进入我的会员中心</a>
+      <div class="cont">
+        <div class="fabu">
+          <a href="<%= new_inquiry_my_whmall_buying_manage_inquiry_index_path %>" class="qiugou"><i></i>发布求购</a>
+          <p><a href="<%= my_whmall_buying_manage_inquiry_index_path %>">已收到报价<span>(<%= current_user.inquiries.sent_quotation.includes(:chemical,send_quotation_detail: :inquiry_quotation).where(real_order: false).count %>)</span></a></p>
+        </div>
+        <div class="fabu" style="margin:0">
+          <p><a href="<%= my_whmall_selling_inquiries_path %>">待报价<span>(<%= current_user.inquiry_vendors.joins(:inquiry).un_quotation.where("inquiries.real_order": false).count %>)</span></a></p>
+          <p><a href="<%= my_whmall_selling_sales_orders_path("search_params[order_status]": 0) %>">待处理订单<span>(<%= current_user.sale_orders.un_inventory_order.passed_by_deep_trader_for_vendor.passed_pending_supplement_order.is_in_initial.where(hidden: false, freeze_status: nil).count %>)</span></a></p>
+        </div>
+      </div>
+      <div class="phone">
+        <i></i>
+        <p>服务热线</p>
+        <p class="num">4008-200-497</p>
+      </div>
+    </div>
+<% end %>

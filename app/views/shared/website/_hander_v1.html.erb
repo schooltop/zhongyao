@@ -1,0 +1,75 @@
+<div class="headWrapper">
+  <div class="container">
+    <a href="/" class="logo"></a>
+    <div class="l">
+      <%= render '/shared/website/quick_search' %>
+      <div class="navWrapper">
+        <ul>
+          <li <% if params[:controller] == 'home' %> class="active" <% end %>>
+            <a href="/">首页</a>
+          </li>
+          <li class="find_materials">
+            <div class="assist"></div>
+            <a href="/look_raw_material/index.html">找原料</a>
+            <div class="details_find_materials">
+              <div class="container">
+                <div class="catalogue">
+                  <p class="title">商品目录</p>
+                  <% @category_list.each do |cate|%>
+                      <div class="item">
+                        <a href="<%= category_products_path(cate.search_name_tag)%>"><%=cate.name_cn %></a>
+                      </div>
+                  <% end %>
+                </div>
+                <div class="category">
+                  <div class="list hot">
+                    <a href="<%= hot_chemicals_products_path %>.html" class="title">热销产品 <i class="icon_hot"></i></a>
+                    <% if @a_hot_chem_list_ids.present? %>
+                      <% @a_hot_chem_list_ids.each do |id| %>
+                          <% chemical = cached_chemical_obj(HotChemical.find_by(id: id)&.chemical_id) %>
+                          <a href="/products/<%= chemical.get_url_cas %>.html" class="item "><%= chemical.show_lenght_get_name(8) %></a>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="list">
+                    <a href="<%= special_categories_products_path %>.html" class="title">管制品类 <i class="hot"></i></a>
+                    <% @special_chemical_list.each_with_index  do |pro, index| %>
+                        <% if index < 8 %>
+                            <% chemical = cached_chemical_obj(pro.id) %>
+                            <a href="/products/<%= pro.get_url_cas %>.html" class="item"><%= pro.show_lenght_get_name(8) %></a>
+                        <% end %>
+                    <% end %>
+                  </div>
+
+                  <div class="list">
+                    <a href="<%= factory_direct_supplies_products_path %>.html" class="title">厂家直供 <i class="hot"></i></a>
+                    <% if AgentChemical.get_agent_chemical_list.present? %>
+                        <% AgentChemical.get_agent_chemical_list.each do |chemical_id| %>
+                            <% _chemical = cached_chemical_obj(chemical_id) %>
+                            <a href="/products/<%= _chemical&.get_url_cas %>.html" class="item "><%= _chemical&.show_lenght_get_name(8) %></a>
+                        <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li <% if params[:controller] == 'selling_product' %> class="active" <% end %> >
+            <a href="/product_release.html" target="_blank" >卖产品</a>
+          </li>
+          <li <% if params[:controller] == 'firm_orders' %> class="active" <% end %>>
+            <a href="/firm_orders/index.html" >实单竞标</a>
+          </li>
+          <li <% if params[:controller] == 'syntheticnew' %> class="active" <% end %> >
+            <a href="/chemical_ai"  target="_blank">AI路线设计</a>
+          </li>
+
+          <li class="new">
+            <i>NEW</i>
+            <a href="<%= reagent_mall_mall_index_path%>.html" target="_blank">试剂商城</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="home_real_single">
+  <div class="container">
+    <div class="title">
+      <div class="new">
+        <i></i> 实单竞标
+      </div>
+      <div class="constantly">
+        <i></i> 定制合成项目实时更新
+      </div>
+      <a href="/firm_orders/index.html" class="more">查看更多>></a>
+    </div>
+    <ul class="real_single_list">
+      <li>
+        <ul class="list-tab-head">
+          <li class="cas">CAS号</li>
+          <li class="name">产品名称</li>
+          <li class="num">招标价格</li>
+          <li class="purity">纯度</li>
+          <li class="date">定制周期</li>
+          <li class="time">结标时间</li>
+          <li></li>
+        </ul>
+      </li>
+
+      <li>
+        <% @firm_orders.each do |detail| %>
+            <ul class="list">
+              <li class="cas"><a href="/products/<%= detail.chemical&.get_url_cas %>.html" target="_blank"><%= detail.chemical.get_url_cas %></a></li>
+              <li class="name"><a href="/products/<%= detail.chemical&.get_url_cas %>.html" target="_blank"><%= detail.chemical.get_name %></a></li>
+              <li class="num">
+                ¥<%= detail.quotation_detail.original_price.to_f + detail.quotation_detail.shipping_fee.to_f %>/
+                <%= Package.package_str(detail.quotation_detail.package, detail.quotation_detail.package_unit) %>
+
+          </li>
+              <li class="purity"><%= detail.quotation_detail.purity %></li>
+              <li class="date"><%= detail.quotation_detail.etd %>天</li>
+              <li class="time J_lxftime" ><%= show_db_time detail.web_ended_at %>&nbsp;</li>
+              <li>
+                <button onclick="javascript:location.href='<%= firm_order_path detail %>'">立即投标</button>
+              </li>
+            </ul>
+        <% end %>
+
+
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div id="bannerWrapper">
+  <div class="homeUserBox J_homeUserBox">
+    <%= render 'banner_right_window' %>
+  </div>
+  <%= render 'banner' %>
+</div>
+
+<%= render 'hot_products' %>
+<%= render 'special_category' %>
+
+<%= render 'suppliers' %>
+<%= render 'factory' %>
+
+
+<div class="information">
+  <div class="container">
+    <%= render 'article_list' %>
+    <%= render 'chemical_frontier' %>
+  </div>
+</div>
+
+<% content_for :scripts do %>
+  <%= javascript_include_tag 'website/js/page/index.js' %>
+  <%= javascript_include_tag 'website/jquery.lazyload' %>
+  <script>
+    $('.ui.modal').modal('show');
+    $('.ui.dropdown').dropdown();
+    $(".scrollLoading").lazyload({
+      effect: "fadeIn",
+      skip_invisible : false,
+      failure_limit:'10'
+    });
+    <% if params[:fr].present? %>
+      $("html, body").animate({
+          scrollTop: $('#yzd_anchor').offset().top + "px"
+      }, {
+          duration: 1000,
+          easing: "swing"
+      });
+    <% end %>
+
+
+
+
+
+  </script>
+<% end %>
+

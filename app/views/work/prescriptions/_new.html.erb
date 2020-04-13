@@ -1,0 +1,15 @@
+<h2 class="ui dividing header">新增医药</h2>
+<%= simple_form_for [@prescription], url: work_prescriptions_path, method: :post, remote: true do |f| %>
+    <div class="two fields">
+      <%= f.input :name, required: false  %>
+      <%= f.input :diseases_list %>
+    </div>
+    <div class="two fields">
+      <%= f.input :detail %>
+      <%= f.input :note %>
+    </div>
+<% end %>
+<div class="actions">
+  <div class="ui button" onclick="javascript: $('#new_prescription_modal').modal('hide')">取消</div>
+  <div class="ui blue button" onclick="javascript: $('#new_prescription').submit();" >确定</div>
+</div>

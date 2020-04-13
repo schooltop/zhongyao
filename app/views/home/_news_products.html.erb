@@ -1,0 +1,34 @@
+<% if @news_vendor_products.present? %>
+  <% @news_vendor_products.each do |vp| %>
+      <div class="item">
+        <div class="list_content">
+          <div class="cover"></div>
+          <button class="buyer_leading_btn" tabindex="<%= vp.id %>" >我要求购</button>
+          <div class="img">
+            <img src="<%= chemical_pic_url vp.chemical&.id %>" onerror="javascript:this.src='/assets/noPicture.jpg'" alt=""  width="112px" height="112px"/>
+          </div>
+          <div class="name">
+             <%= vp.chemical&.get_name %>
+          </div>
+          <% if vp.chemical&.cas.present? %>
+              <p><span>CAS号:</span><%= vp.chemical&.cas %></p>
+          <% end %>
+          <p><span>供应商:</span><%= vp.vendor&.company&.get_name %></p>
+        </div>
+      </div>
+  <% end %>
+    <%= simple_form_for Inquiry.new, url: publish_inquiry_look_raw_material_index_path  , method: :post, html: {class: '', target: "_blank", id: 'home_buy_form'} do |f| %>
+      <input type="hidden" name="id" id="vendor_product_id" >
+    <% end %>
+<% end %>
+
+
+<% content_for :scripts do %>
+    <script type="text/javascript">
+      $('.buyer_leading_btn').bind('click', function () {
+        _vendor_product_id = $(this).attr('tabIndex');
+        $("#vendor_product_id").val(_vendor_product_id)
+        $("#home_buy_form").submit()
+      });
+    </script>
+<% end %>

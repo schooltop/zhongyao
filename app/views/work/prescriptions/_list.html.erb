@@ -1,0 +1,22 @@
+<tr id="prescription_<%= prescription.id %>">
+  <td class="center aligned">
+    <span><%= prescription.id%></span>
+  </td>
+  <td class="center aligned">
+    <%=  prescription.name%>
+  </td>
+  <td class="center aligned">
+    <%= prescription.diseases_list %>
+  </td>
+  <td class="center aligned">
+    <%= prescription.detail %>
+  </td>
+  <td class="center aligned">
+    <%= link_to edit_work_prescription_path(prescription), remote: true, data: {content: '修改', variation: 'inverted'}, class: 'ui blue icon button' do %>
+      <i class="edit icon"></i>
+    <% end %>
+    <%= link_to work_prescription_path(prescription), target: "_brank", data: {content: '明细', variation: 'inverted'}, class: 'ui blue icon button' do %>
+      <i class="add icon"></i>
+    <% end %>
+  </td>
+</tr>

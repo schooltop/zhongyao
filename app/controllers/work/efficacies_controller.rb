@@ -4,7 +4,9 @@ class Work::EfficaciesController < Admin::BaseController
   # GET /efficacies
   # GET /efficacies.json
   def index
-    @efficacies = Efficacy.all
+    @q = SearchParams.new(params[:search_params] || {})
+    search_params = @q.attributes(self)
+    @efficacies = Efficacy.default_where(search_params).page(params[:page]).per(10)
   end
 
   # GET /efficacies/1
@@ -24,31 +26,13 @@ class Work::EfficaciesController < Admin::BaseController
   # POST /efficacies
   # POST /efficacies.json
   def create
-    @efficacy = Efficacy.new(efficacy_params)
-
-    respond_to do |format|
-      if @efficacy.save
-        format.html { redirect_to @efficacy, notice: 'Efficacy was successfully created.' }
-        format.json { render :show, status: :created, location: @efficacy }
-      else
-        format.html { render :new }
-        format.json { render json: @efficacy.errors, status: :unprocessable_entity }
-      end
-    end
+    @efficacy = Efficacy.create(efficacy_params)
   end
 
   # PATCH/PUT /efficacies/1
   # PATCH/PUT /efficacies/1.json
   def update
-    respond_to do |format|
-      if @efficacy.update(efficacy_params)
-        format.html { redirect_to @efficacy, notice: 'Efficacy was successfully updated.' }
-        format.json { render :show, status: :ok, location: @efficacy }
-      else
-        format.html { render :edit }
-        format.json { render json: @efficacy.errors, status: :unprocessable_entity }
-      end
-    end
+    @efficacy.update(efficacy_params)
   end
 
   # DELETE /efficacies/1
@@ -69,6 +53,6 @@ class Work::EfficaciesController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def efficacy_params
-      params.fetch(:efficacy, {})
+      params.require(:efficacy).permit(:name)
     end
 end

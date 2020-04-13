@@ -1,0 +1,37 @@
+<% if category.present? %>
+  <% hot_banner = Banner.get_banner_info(:products_hot_product_top, category ) %>
+<% else %>
+  <% hot_banner = Banner.get_banner_info(:products_hot_product_top) %>
+<% end %>
+
+<% if hot_banner.present? %>
+    <% if hot_banner&.href.present? %>
+        <a href="<%= hot_banner&.href  %>"  target="_blank">
+          <img src="<%= hot_banner&.image %>" alt="" style="width: 230px;height: 249px;">
+        </a>
+    <% else %>
+        <img src="<%= hot_banner&.image %>" alt="" style="width: 230px;height: 249px;">
+    <% end %>
+<% else %>
+    <img src="/assets/website/test5.jpg" alt="" style="width: 230px;height: 249px;">
+<% end %>
+
+
+<div class="R_hot_product">
+  <div class="head">热销产品</div>
+  <ul class="list">
+    <% if @a_hot_chem_list_ids.present? %>
+      <% @a_hot_chem_list_ids.each do |id| %>
+        <% chemical =  cached_chemical_obj(HotChemical.find_by(id: id)&.chemical_id) %>
+        <li>
+          <a href="/products/<%= chemical&.get_url_cas %>.html">
+            <img src="/assets/noPicture.jpg"  data-original="<%= chemical&.pic_url %>" class="img scrollLoading"  onerror="javascript:this.src='/assets/noPicture.jpg'"  draggable="false" />
+          </a>
+          <p class="mt10"><a href="/products/<%= chemical&.get_url_cas %>.html"><%= chemical&.show_lenght_get_name(8) %></a></p>
+          <p><a href="/products/<%= chemical&.get_url_cas %>.html"><%= chemical&.cas %></a></p>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <a href="<%= hot_chemicals_products_path %>.html" class="foot">查看更多</a>
+</div>

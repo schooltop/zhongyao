@@ -1,0 +1,45 @@
+<!-- <div class="head_notice J_notice">
+  <div class="container"> -->
+    <!--<p><i class="icon_notice"></i>尊敬的用户：进博会期间上海地区危化品安全监管加强，请确保生产和物流合规性。供应商发货请严格按照采购合同规定，避免延误和损失。<a href="/media_reports/announcement_detail?id=71">点击了解详情。</a></p>-->
+    <!-- <p><i class="icon_notice"></i>友情提醒：两会期间发往北京的配送将暂停发货，有投料计划的用户请尽快备货，以免造成不必要的麻烦！</p> -->
+    <!-- <a href="JavaScript:;" class="notice_close J_notice_close">x</a> -->
+<!--   </div>
+</div> -->
+<div class="topbar">
+  <div class="container">
+    <div class="topLeft">
+      <a href="/" class="item mr10">首页</a>
+      <% if current_user.blank? %>
+          <span class="mr10" id="topbar_greet">您好! 欢迎来网化商城</span>
+          <a href="<%= user_session_path %>" class="login">请登录</a>
+          <a href="<%= new_user_registration_path %>" class="item">免费注册</a>
+      <% else %>
+          <span class="mr10" id="topbar_greet"><%= current_user.name %>，欢迎来网化商城</span>
+          <a href="<%= my_whmall_home_index_path %>" class="item">会员中心</a>
+          <%= link_to destroy_user_session_path ,method: 'delete', class: 'login' do %>
+              登出
+          <% end %>
+      <% end %>
+    </div>
+    <% unless @hide_header_right %>
+      <div class="topRight">
+        <a href="<%= reagent_mall_shop_carts_path %>" class="shopp_cart">购物车 <span class="num">
+           <% if current_user.blank? %>
+            <%= ShoppingCart.actived.where(session_id: session.id).count %>
+          <% else %>
+              <%= ShoppingCart.actived.where(user_id: current_user.id).count %>
+          <% end %>
+        </span></a>
+        <a href="/look_raw_material/publish_inquiry.html?siteId=1" class="icon_post_buying"></a>
+        <a href="/product_release.html" class="icon_sell_products" target="_blank"></a>
+        <a href="/purchase_license/guide" class="filing">易制毒备案</a>
+        <div <% if  (['about_us', 'media_reports', 'user/sessions', 'user/registrations','user/passwords'].include? params[:controller]) ||    (params[:controller] == 'quotation' && (['quotation_success','inquiry_quotation'].include? params[:action])) %>   class="icon_weixin J_not_transformation" <%else %> class="icon_weixin2 "<% end %>  >
+          <img src="/assets/website/icons/weixin3.png" alt="" >
+        </div>
+        <div class="icon_weibo">
+          <img src="/assets/website/icons/weibo3.png" alt="">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="topSearch">
+  <form action="/search" class="form-search" id="frm_quick_search" method="get" style="border:none;" target="_blank">
+    <input class="searchTxt" id="quick_search_param" name="q" placeholder="请输入化学品的中文名，英文名或CAS号" type="text">
+    <div class="searchBtn" onclick="search_input('#frm_quick_search input')">
+      <i class="icon_head_search"></i>
+    </div>
+    <a class="sfSearch" href="/products/structure_search.html">结构式搜索</a>
+  </form>
+  
+</div>
+
+
+
+<% content_for :scripts do %>
+
+    <script type="text/javascript" charset="utf-8">
+      function search_input(selector){
+        var term = encodeURI($(selector).val());
+        if(term){
+          search(term);
+        }
+      }
+
+      function search(term){
+        window.location.href = '/search?q=' + term;
+      }
+
+    </script>
+
+<% end %>

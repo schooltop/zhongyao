@@ -1,0 +1,22 @@
+<div class="flexslider"  id="homeBanner">
+  <ul class="slides">
+    <% if @banner_list.present? %>
+        <% @banner_list.each do |banner|%>
+            <% if  banner.image_alt == '管制品' %>
+                <li style="background:url(<%= banner&.image %>) 50% 0 no-repeat;  cursor:pointer;"  onclick="window.open('http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDAzMDU4Ml80ODUwMjNfODAwMDMwNTgyXzJf')"  ></li>
+            <% else %>
+              <% if  banner&.href.present? %>
+                  <li style="background:url(<%= banner&.image %>) 50% 0 no-repeat;  cursor:pointer;"  onclick="location.href='<%= banner&.href  %>'"  ></li>
+              <% else %>
+                  <li style="background:url(<%= banner&.image %>) 50% 0 no-repeat; " ></li>
+              <% end %>
+            <% end %>
+        <% end %>
+
+
+    <% else %>
+        <li style="background:url(/assets/website/banner/banner.jpg) 50% 0 no-repeat; cursor:pointer;" onclick="location.href='http://www.ebuychem.com'"></li>
+        <li style="background:url(/assets/website/banner/banner2.jpg) 50% 0 no-repeat;"></li>
+    <% end %>
+  </ul>
+</div>

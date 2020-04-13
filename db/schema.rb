@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309025622) do
+ActiveRecord::Schema.define(version: 20200413093238) do
 
   create_table "alias_names", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "medicine_id",              comment: "药"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20170309025622) do
     t.integer  "package_unit",                 comment: "包装类型"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "package_info",                 comment: "数量信息"
     t.index ["medicine_id"], name: "index_prescription_details_on_medicine_id", using: :btree
     t.index ["prescription_id"], name: "index_prescription_details_on_prescription_id", using: :btree
   end

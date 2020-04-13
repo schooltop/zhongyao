@@ -1,0 +1,23 @@
+<% if @business_deal_lists.present? %>
+  <ul>
+    <% @business_deal_lists.each do |record| %>
+        <li class="list">
+            <span class="cas">
+              <%= link_to record.cas , "/products/#{record.cas}.html" %>
+            </span>
+            <span class="num">
+             <%= record.package_info   %>
+
+            </span>
+          <span class="state <%= Event::EVENT_BG_COLOR[record.opreation_type]%>"><%= Event::EVENT_BG_STATUS_NAME[record.opreation_type]%></span>
+            <span class="time">
+              <% if record.created_at.strftime("%Y-%m-%d") == Time.now.strftime("%Y-%m-%d") %>
+                <%= record.created_at.strftime('%H:%M') %>
+              <% else %>
+                <%= record.created_at.strftime('%m-%d') %>
+              <% end %>
+            </span>
+        </li>
+    <% end %>
+  </ul>
+<% end %>

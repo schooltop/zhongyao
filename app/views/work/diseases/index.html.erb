@@ -1,14 +1,14 @@
 <div class="ui grid">
   <div class="left floated fourteen wide column">
-    <h2>疾病管理</h2>
+    <h2>病例管理</h2>
   </div>
 </div>
 <%= render 'search_form'  %>
 <div class="ui blue segment">
   <div class="ui grid">
     <div class="left floated wide column">
-      <%= link_to new_work_disease_path, class: 'ui primary button' do %>
-        <i class="plus icon"></i>新增疾病
+      <%= link_to new_work_disease_path, remote: true, class: 'ui primary button' do %>
+        <i class="plus icon"></i>新增病例
       <% end %>
     </div>
   </div>
@@ -16,9 +16,9 @@
     <thead>
     <tr >
       <th class="center aligned">ID</th>
-      <th class="center aligned">病名称</th>
-      <th class="center aligned">相关描述</th>
-      <th class="center aligned">简介</th>
+      <th class="center aligned">病例名称</th>
+      <th class="center aligned">连接</th>
+      <th class="center aligned">描述</th>
       <th class="center aligned">操作</th>
     </tr>
     </thead>

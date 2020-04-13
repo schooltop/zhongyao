@@ -1,25 +1,33 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Prescriptions</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2>药物管理</h2>
+  </div>
+</div>
+<%= render 'search_form'  %>
+<div class="ui blue segment">
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to new_work_prescription_path, remote: true, class: 'ui primary button' do %>
+        <i class="plus icon"></i>新增药物
+      <% end %>
+    </div>
+  </div>
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr >
+      <th class="center aligned">ID</th>
+      <th class="center aligned">药方名称</th>
+      <th class="center aligned">病理</th>
+      <th class="center aligned">单方</th>
+      <th class="center aligned">操作</th>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @prescriptions.each do |prescription| %>
-      <tr>
-        <td><%= link_to 'Show', prescription %></td>
-        <td><%= link_to 'Edit', edit_prescription_path(prescription) %></td>
-        <td><%= link_to 'Destroy', prescription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Prescription', new_work_prescription_path %>
+    </thead>
+    <tbody>
+    <%= render partial: 'list', collection: @prescriptions, as: :prescription %>
+    </tbody>
+  </table>
+  <span class="blue">
+    <%= page_entries_info(@prescriptions) %>
+  </span>
+  <%= paginate(@prescriptions, :theme => 'admin')%>
+</div>

@@ -1,0 +1,38 @@
+<div class="headWrapper2">
+  <div class="container">
+    <a href="/" class="logo2">
+      <img src="/assets/website/logo2.png">
+      <span>走进网化 </span>
+    </a>
+    <div class="main_menu">
+      <ul>
+        <li><a href="<%= about_us_path %>" <% if @bar_type == 'bar_one' %> class="active" <% else %>  target="_blank" <% end %> >关于我们</a></li>
+
+        <li class="J_head_menu"><a href="<%= media_reports_path %>" <% if @bar_type == 'bar_two' %> class="active" <% end %> >新闻公告</a>
+          <div class="headWrapper2_bj" <% if  @bar_type == 'bar_two'  %> style='display: block;' <% end %> ></div>
+          <ul class="second_menu" <% if  @bar_type == 'bar_two' %> style='display: block;margin-left:-35px' <% else %> style="margin-left:-35px" <% end %> >
+            <li><a href="<%= media_reports_path %>" <% if  @second_menu_type == 'news' %>  class="active2" <% end %> >媒体报道</a></li>
+            <li><a href="<%= announcement_media_reports_path %>"  <% if  @second_menu_type == 'affiche' %>  class="active2" <% end %> >通知公告</a></li>
+            <li><a href="<%= chemical_frontier_media_reports_path %>"  <% if  @second_menu_type == 'chemical_frontier' %>  class="active2" <% end %> >化学前沿</a></li>
+          </ul>
+        </li>
+        <li class="J_head_menu">
+          <a href="<%= terms_about_us_path %>" <% if @bar_type == 'bar_three' %> class="active" <% end %>>使用条款</a>
+          <div class="headWrapper2_bj" <% if  @bar_type == 'bar_three' %> style='display: block;' <% end %> ></div>
+          <ul class="second_menu" <% if  @bar_type == 'bar_three' %> style='display: block;' <% end %> >
+            <li><a href="<%= terms_about_us_path %>" <% if  @second_menu_type == 'terms' %>  class="active2" <% end %> >协议条款</a></li>
+            <li><a href="<%= privacy_about_us_path %>" <% if  @second_menu_type == 'privacy' %>  class="active2" <% end %>>隐私条款</a></li>
+            <li><a href="<%= use_rules_about_us_path %>" <% if  @second_menu_type == 'use_rules' %>  class="active2" <% end %>>使用前须知</a></li>
+            <% if Time.now < '2018-01-01' %>
+                <li><a href="<%= point_policy_about_us_path %>" <% if  @second_menu_type == 'point_policy' %>  class="active2" <% end %> >积分换购政策</a></li>
+            <% end %>
+
+            <li><a href="<%= real_single_rule_about_us_path %>" <% if  @second_menu_type == 'real_single_rule' %>  class="active2" <% end %> >实单竞标协议与规则</a></li>
+          </ul>
+        </li>
+        <li><a href="<%= partner_about_us_path %>" <% if @bar_type == 'bar_four' %> class="active" <% end %>>合作伙伴</a></li>
+        <li><a href="<%= contact_us_about_us_path %>" <% if @bar_type == 'bar_five' %> class="active" <% end %> >联系我们</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

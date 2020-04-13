@@ -1,0 +1,13 @@
+<div class="item">
+  <% chemical = cached_chemical_obj(hot_chemical.chemical_id)  %>
+  <a href="/products/<%= chemical.get_url_cas  %>.html" class="item_name"><i class="icon_hot mr10 "></i><%= chemical.get_name %></a>
+  <a href="/products/<%= chemical.get_url_cas %>.html">
+    <img src="<%= chemical_pic_url chemical.id %>" alt="" onerror="javascript:this.src='/assets/noPicture.jpg'" class="pic">
+  </a>
+  <div class="description">
+    <%= cached_chemical_describe_sets(hot_chemical.chemical_id)&.fixed_desc %>
+
+  </div>
+  <a href="javascript:void(0)" class="inquiry buyer_leading_btn " tabindex="<%= hot_chemical&.chemical_id %>">立即询价</a>
+</div>
+
