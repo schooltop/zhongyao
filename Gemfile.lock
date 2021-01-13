@@ -306,7 +306,7 @@ GEM
       pry (>= 0.9.10)
     psych (2.2.2)
     public_suffix (2.0.5)
-    puma (3.6.2)
+    puma (3.12.6)
     qiniu (6.8.1)
       json (~> 1.8)
       mime-types (~> 2.4, >= 2.4.0)
@@ -483,7 +483,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   psych (= 2.2.2)
-  puma (= 3.6.2)
+  puma (= 3.12.6)
   qiniu
   rails (>= 5.0.0.rc2, < 5.1)
   rails_com!
