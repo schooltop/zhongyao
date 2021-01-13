@@ -3,7 +3,7 @@
     <span><%= prescription.id%></span>
   </td>
   <td class="center aligned">
-    <%=  prescription.name%>
+    <%= link_to work_prescription_path(prescription) do %><%=  prescription.name%> <%end%>
   </td>
   <td class="center aligned">
     <%= prescription.diseases_list %>

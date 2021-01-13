@@ -19,4 +19,6 @@ Rails.application.routes.draw do
     end
   end
 
+  # get '*unmatched_route', :to => 'application#raise_not_found!'  
+
 end

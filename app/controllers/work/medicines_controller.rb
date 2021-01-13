@@ -12,6 +12,12 @@ class Work::MedicinesController < Admin::BaseController
   # GET /medicines/1
   # GET /medicines/1.json
   def show
+    # 疾病
+    @diseases = MedicineDisease.where(medicine_id: @medicine.id)
+    # 药效
+    @efficacies = MedicineEfficacy.where(medicine_id: @medicine.id)
+    # 药方
+    @prescriptions = PrescriptionDetail.where(medicine_id: @medicine.id)
   end
 
   # GET /medicines/new

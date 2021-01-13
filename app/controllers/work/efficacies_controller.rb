@@ -12,6 +12,8 @@ class Work::EfficaciesController < Admin::BaseController
   # GET /efficacies/1
   # GET /efficacies/1.json
   def show
+    # 医药
+    @medicines = MedicineEfficacy.where(efficacy_id: @efficacy.id)
   end
 
   # GET /efficacies/new

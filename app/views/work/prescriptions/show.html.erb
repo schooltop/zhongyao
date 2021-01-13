@@ -1,0 +1,11 @@
+<h2 class="ui dividing header">查看药方</h2>
+<%= simple_form_for [@prescription], url: work_prescription_path, method: :put, remote: true do |f| %>
+   <div class="two fields">
+      <%= f.input :name, required: false  %>
+      <%= f.input :diseases_list %>
+    </div>
+    <div class="two fields">
+      <%= f.input :detail %>
+      <%= f.input :note %>
+    </div>
+<% end %>

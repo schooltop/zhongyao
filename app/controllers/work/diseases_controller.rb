@@ -12,6 +12,10 @@ class Work::DiseasesController < Admin::BaseController
   # GET /diseases/1
   # GET /diseases/1.json
   def show
+    # 药物
+    @medicines = MedicineDisease.where(disease_id: @disease.id)
+    # 药方
+    @prescriptions = PrescriptionDisease.where(disease_id: @disease.id)
   end
 
   # GET /diseases/new

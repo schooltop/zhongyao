@@ -1,0 +1,73 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><%=@medicine.name%></h2>
+  </div>
+</div>
+<div class="ui blue segment">
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr >
+      <th class="center aligned">ID</th>
+      <th class="center aligned">疾病</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @diseases.each do |_|%>
+        <tr>
+          <td class="center aligned">
+            <span><%= _.disease.id%></span>
+          </td>
+          <td class="center aligned">
+            <%= link_to work_disease_path(_.disease) do %><%=  _.disease.name%><%end%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="ui blue segment">
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr >
+      <th class="center aligned">ID</th>
+      <th class="center aligned">药效</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @efficacies.each do |_|%>
+          <tr>
+            <td class="center aligned">
+              <span><%= _.efficacy.id%></span>
+            </td>
+            <td class="center aligned">
+              <%=  _.efficacy.name%>
+            </td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="ui blue segment">
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr >
+      <th class="center aligned">ID</th>
+      <th class="center aligned">药方</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @prescriptions.each do |_|%>
+          <tr>
+            <td class="center aligned">
+              <span><%= _.prescription.id%></span>
+            </td>
+            <td class="center aligned">
+              <%= link_to work_prescription_path(_.prescription) do %><%=  _.prescription.name%><%end%>
+            </td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>

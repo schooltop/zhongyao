@@ -3,7 +3,7 @@
     <span><%= medicine.id%></span>
   </td>
   <td class="center aligned">
-    <%=  medicine.name%>
+    <%= link_to work_medicine_path(medicine) do %><%=  medicine.name %><%end%>
   </td>
   <td class="center aligned">
     <%= medicine.other_name %>
